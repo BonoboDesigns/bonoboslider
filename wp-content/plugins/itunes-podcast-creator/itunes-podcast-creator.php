@@ -37,7 +37,7 @@ class iTunesRSS extends SanityPluginFramework {
 			global $iTunesPage;
 			$file = dirname(__FILE__) . '/itunes-podcast-creator/';
 			$plugin_url = plugin_dir_url($file);
-			$iTunesPage = add_menu_page( 'iTunes Podcast Creator', 'iTunes Podcast Creator', 'manage_options', 'unscene_rss_feed', 'iTunesConfigPage', $plugin_url . 'templates/assets/images/icon-backend.png', 6);
+			$iTunesPage = add_menu_page( 'iTunes Podcast Creator', 'iTunes Podcast Creator', 'manage_options', 'unscene_rss_feed', 'iTunesConfigPage', $plugin_url . 'templates/assets/images/icon-backend.png', 61);
 			add_action( 'admin_init', 'iTunesRegisterSettings' );
 		}
 		
@@ -95,7 +95,7 @@ class iTunesRSS extends SanityPluginFramework {
 			}
 
 
-			function pg_enc() {
+			function Cus_enc() {
 
 				foreach ( (array) get_post_custom() as $key => $val) {
 					if ($key == 'enclosure') {
@@ -114,7 +114,7 @@ class iTunesRSS extends SanityPluginFramework {
 							 * @param string $html_link_tag The HTML link tag with a URI and other attributes.
 							 */
 							$enclosure[0] = rtrim($enclosure[0]);
-							echo apply_filters( 'pg_enc', $enclosure[0] );
+							echo apply_filters( 'Cus_enc', $enclosure[0] );
 							
 						}
 					}

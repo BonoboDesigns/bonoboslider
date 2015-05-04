@@ -9,6 +9,8 @@
 <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:700|PT+Sans+Caption|Paytone+One' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" href="<?php echo plugins_url( '/assets/style.css', dirname(__FILE__) );?>">
 <link rel="stylesheet" href="<?php echo plugins_url( '/assets/icos.css', dirname(__FILE__) );?>">
+<link rel="stylesheet" href="<?php echo plugins_url( '/assets/css/swiper.min.css', dirname(__FILE__) ); ?>">
+<link rel="stylesheet" href="<?php echo plugins_url( '/assets/css/fade.css', dirname(__FILE__) ); ?>">
 <script type="text/javascript" src="http://www.google.com/jsapi"></script>
 <script type="text/javascript" src="<?php echo plugins_url( '/assets/js/gfeedfetcher.js', dirname(__FILE__) );?>"></script>
 <script>
@@ -23,12 +25,13 @@
 </script>
 </head>
 
-<body onLoad="playPause()">
+<?php $afil = $_GET["autoplay"]; ?>
+<body<?php if (isset($afil)) { ?> onLoad="playPause()"<?php } ?> class="bp-sm">
     <div id="header"><div class="container">
        <a href="http://drsusanblock.tv/main/"><img src="<?php echo get_option('UnsceneMusicLogo'); ?>"></a>
         <ul id="nav">
 
-        <li><a href="#" onClick="ga('send', 'event', 'mobile', 'Order Items', '888-259-4979');">Something Else <i class="ico-publish"></i> </a></li>
+        <li><a href="#">Something Else <i class="ico-publish"></i> </a></li>
         <li><a href="#" onclick="myFunction('<?php echo "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]"; ?>')">Open Player <i class="ico-publish"></i> </a></li>
         <li style="width:100% !important; clear:both;"></li>
     </ul>
@@ -99,17 +102,27 @@
             <div id='more'><i class="ico-sharable"></i></div>
 
         </div>
-            <div class="playlist"> <div id="artist">
-                
-            </div> 
+            <div class="playlist swiper-container"> 
+                <div id="artist swiper-wrapper">
+        <?php if(have_posts()) : $i = 0; ?>
+        <?php while(have_posts()) : the_post(); ?>
+    <div class="item swiper-slide" onClick="pickSong(<?php echo $i; ?>);ga('send', 'event', 'mobile', 'Order Items', '<?php the_title(); ?>');" data-mp3="<?php Cus_enc(); ?>">
+        <?php $textInfo = get_the_content(); ?>
+        <h1 id='hd'><?php echo strip_tags($textInfo); ?></h1>
+        <h2 id='dc'><div class='artistTXT'><?php the_title(); ?></div></h2>
+        <h2 id='dcc' style='display:none;'>{datetime}</h2>
+        <h3 id='ex'><a href='<?php the_permalink(); ?>' target="_new">DSB Radio</a></h3>
+    </div>
+    <?php if (!is_single()) { $i++; } ?>
+<?php endwhile; ?>
+<?php endif; ?>
+                </div> 
         </div>
 
         
 
 
         </div>
-        <div id="player"></div>
-        <div id="playerAd" style="display:none;"></div>
     </div>
 
 </div>
@@ -123,37 +136,60 @@
 
 
 <div id="footer"><div class="container">
-    <ul id="sites">
-        <li data-uri="1"><img src="<?php echo plugins_url( '/assets/images/ico-bloggamy.png', dirname(__FILE__) );?>" alt=""></li>
-        <li data-uri="2"><img src="<?php echo plugins_url( '/assets/images/ico-tv.png', dirname(__FILE__) );?>" alt=""></li>
-        <li data-uri="3"><img src="<?php echo plugins_url( '/assets/images/ico-institute.png', dirname(__FILE__) );?>" alt=""></li>
-        <li data-uri="4"><img src="<?php echo plugins_url( '/assets/images/ico-marketplace.png', dirname(__FILE__) );?>" alt=""></li>
-        <li style="width:100% !important; clear:both;"></li>
+    <ul>
+        <li id="player"></li>
+        <li> <!-- <ul id="sites">
+            <li data-uri="1"><img src="<?php echo plugins_url( '/assets/images/ico-bloggamy.png', dirname(__FILE__) );?>" alt=""></li>
+            <li data-uri="2"><img src="<?php echo plugins_url( '/assets/images/ico-tv.png', dirname(__FILE__) );?>" alt=""></li>
+            <li data-uri="3"><img src="<?php echo plugins_url( '/assets/images/ico-institute.png', dirname(__FILE__) );?>" alt=""></li>
+            <li data-uri="4"><img src="<?php echo plugins_url( '/assets/images/ico-marketplace.png', dirname(__FILE__) );?>" alt=""></li>
+            <li style="width:100% !important; clear:both;"></li>
+            </ul> -->
+        </li>
     </ul>
 
 </div>
 </div> <!-- end of footer -->
+<div id="playerAd" style="display:none;"></div>
 
- <?php $i = 0; ?>
-<?php while( have_posts()) : the_post(); ?>
-    urls[<?php echo $i; ?>] = '<?php echo pg_enc(); ?>';
-    <?php if (!is_single()) { $i++; } ?>
-<?php endwhile; ?>
+
 </body>
 
 
 
-<?php wp_reset_query(); ?> 
+<script type="text/javascript" src="<?php echo plugins_url( '/assets/js/jquery-1.9.1.min.js', dirname(__FILE__) );?>"></script>
 <script>
-    // playlist for songs
-    var urls = new Array();
-    <?php $i = 0; ?>
-    <?php while( have_posts()) : the_post(); ?>
-            urls[<?php echo $i; ?>] = '<?php pg_enc(); ?>';
-        <?php if (!is_single()) { $i++; } ?>
-    <?php endwhile; ?>
+var urls = new Array();
+$(".item").each(function(){
+   if($.inArray($(this).data('mp3')) == -1) // check if not in array
+       urls.push($(this).data('mp3'))
+});
+
+var sticknav = function (){
+    var h = $(window).height();
+    if(h>141) {
+        $("body").addClass('bp-lg').removeClass('bp-sm bp-md');
+    } if(h<141) {
+        $("body").addClass('bp-md').removeClass('bp-sm bp-lg');
+    } if(h<91) {
+        $("body").addClass('bp-sm').removeClass('bp-lg bp-md');
+    } 
+}
 
 
+
+$(window).load(function() {
+    // run our function on load
+    sticknav();
+
+    // and run it again every time you scroll
+    $(window).resize(function() {
+        sticknav();
+    });
+});
+</script>
+
+<script>
     // playlist for ads
     var adUrls = new Array();
         adUrls[0] = '<?php echo plugins_url( '/assets/songs/paul.mp3', dirname(__FILE__) )?>';
@@ -200,12 +236,42 @@
 </script>
 <script>
 function myFunction(which) {
-    var myWindow = window.open(which, "BonoboRadio", "width=640, height=240");
+    var myWindow = window.open(which, "BonoboRadio", "width=800, height=600");
 }
 function artistLink(which) {
     var myWindow = window.open( which , 'theFrame');
 }
-
 </script>
 <script type="text/javascript" src="<?php echo plugins_url( '/assets/js/script.js', dirname(__FILE__) );?>"></script>
+<script src="<?php echo plugins_url( 'assets/js/swiper.min.js', dirname(__FILE__) ); ?>"></script>
+<script> 
+var mySwiper = new Swiper(".swiper-container", {
+    pagination: ".swiper-pagination",
+    paginationClickable: ".swiper-pagination",
+    nextButton: ".swiper-button-next",
+    prevButton: ".swiper-button-prev",
+    grabCursor: true,
+    loop: true,
+    centeredSlides: true,
+    slidesPerView: "auto",
+    preloadImages: true,
+    speed: 600,
+    autoplay: 2000,
+    autoplayDisableOnInteraction: false,
+    spaceBetween: 30,
+    effect: "fade"
+});
+mySwiper.update();
+</script>
+<script>
+    jQSwipe = jQuery.noConflict();
+      jQSwipe(document).ready(function() {
+         jQSwipe(window).load(function() {
+            mySwiper.update();
+        });
+         jQSwipe(window).resize(function() {
+            mySwiper.update();
+        });
+    });
+</script>
 </html>

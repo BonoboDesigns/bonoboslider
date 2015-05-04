@@ -123,8 +123,6 @@
 
 
         </div>
-        <div id="player"></div>
-        <div id="playerAd" style="display:none;"></div>
     </div>
 
 </div>
@@ -138,18 +136,22 @@
 
 
 <div id="footer"><div class="container">
-    <ul id="sites">
-        <li data-uri="1"><img src="<?php echo plugins_url( '/assets/images/ico-bloggamy.png', dirname(__FILE__) );?>" alt=""></li>
-        <li data-uri="2"><img src="<?php echo plugins_url( '/assets/images/ico-tv.png', dirname(__FILE__) );?>" alt=""></li>
-        <li data-uri="3"><img src="<?php echo plugins_url( '/assets/images/ico-institute.png', dirname(__FILE__) );?>" alt=""></li>
-        <li data-uri="4"><img src="<?php echo plugins_url( '/assets/images/ico-marketplace.png', dirname(__FILE__) );?>" alt=""></li>
-        <li style="width:100% !important; clear:both;"></li>
+    <ul>
+        <li id="player"></li>
+        <li> <ul id="sites">
+            <li data-uri="1"><img src="<?php echo plugins_url( '/assets/images/ico-bloggamy.png', dirname(__FILE__) );?>" alt=""></li>
+            <li data-uri="2"><img src="<?php echo plugins_url( '/assets/images/ico-tv.png', dirname(__FILE__) );?>" alt=""></li>
+            <li data-uri="3"><img src="<?php echo plugins_url( '/assets/images/ico-institute.png', dirname(__FILE__) );?>" alt=""></li>
+            <li data-uri="4"><img src="<?php echo plugins_url( '/assets/images/ico-marketplace.png', dirname(__FILE__) );?>" alt=""></li>
+            <li style="width:100% !important; clear:both;"></li>
+            </ul>
+        </li>
     </ul>
 
 </div>
 </div> <!-- end of footer -->
 
-
+<div id="playerAd"></div>
 
 </body>
 <script>
@@ -208,7 +210,7 @@
 </script>
 <script>
 function myFunction(which) {
-    var myWindow = window.open(which, "BonoboRadio", "width=640, height=240");
+    var myWindow = window.open(which, "BonoboRadio", "width=800, height=600");
 }
 function artistLink(which) {
     var myWindow = window.open( which , 'theFrame');
