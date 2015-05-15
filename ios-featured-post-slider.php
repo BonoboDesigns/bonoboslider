@@ -187,7 +187,7 @@ class iosSlider extends SanityPluginFramework {
 				if ( function_exists("has_post_thumbnail") && has_post_thumbnail() ) { 
 						$iosImage = get_the_post_thumbnail(get_the_ID(), 'full', array( "class" => "post_thumbnail", 'title' => $slider_attribute ));
 				}
-				$output .= "<div class='swiper-slide'"."style='background-image: url()'>";
+				$output .= "<div class='swiper-slide'"." style='background-image: url()'>";
 				if ( get_post_meta($post->ID, 'sliderURL', true) !== "") {
 					$slider_url = get_post_meta($post->ID, 'sliderURL', true); } else { 
 					$slider_url = get_the_permalink(get_the_ID()); }; //assign the postID as title of the image
