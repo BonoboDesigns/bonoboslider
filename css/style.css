@@ -1,15 +1,15 @@
-.menu-top.toplevel_page_iosSlider .wp-menu-image img {
+.menu-top.toplevel_page_bvs .wp-menu-image img {
   width: 20px;
-  height: 20px;
+  height: 17px;
   opacity: 1 !important; }
 
-.toplevel_page_iosSlider .actions * {
+.toplevel_page_bvs .actions * {
   -webkit-transition: all 200ms ease-in-out 0s;
   -moz-transition: all 200ms ease-in-out 0s;
   -o-transition: all 200ms ease-in-out 0s;
   transition: all 200ms ease-in-out 0s; }
 
-.toplevel_page_iosSlider .actions li {
+.toplevel_page_bvs .actions li {
   -moz-osx-font-smoothing: grayscale;
   color: #fff;
   display: block;
@@ -22,7 +22,7 @@
   background: #959595;
   border-radius: 10px; }
 
-.toplevel_page_iosSlider form#iTunes {
+.toplevel_page_bvs form#bvs {
   border-radius: 10px;
   background: #6d6d6d;
   max-width: 84%;
@@ -31,14 +31,14 @@
   margin: 0 0 20px;
   box-shadow: 0 0 12px 1px #000 inset; }
 
-.toplevel_page_iosSlider .message {
+.toplevel_page_bvs .message {
   color: #111;
   font-size: 13px;
   height: auto;
   margin-top: 10px;
   padding: 20px 3px; }
 
-.toplevel_page_iosSlider .visible.message {
+.toplevel_page_bvs .visible.message {
   border: none;
   padding: 0;
   margin: 0;
@@ -47,19 +47,19 @@
   font-size: 0;
   height: 0; }
 
-.toplevel_page_iosSlider .message img {
+.toplevel_page_bvs .message img {
   -webkit-transition: all 400ms ease-in-out 300ms;
   -moz-transition: all 400ms ease-in-out 300ms;
   -o-transition: all 400ms ease-in-out 300ms;
   transition: all 400ms ease-in-out 300ms; }
 
-.toplevel_page_iosSlider .visible.message img {
+.toplevel_page_bvs .visible.message img {
   -webkit-transition: all 200ms ease-in-out 0s;
   -moz-transition: all 200ms ease-in-out 0s;
   -o-transition: all 200ms ease-in-out 0s;
   transition: all 200ms ease-in-out 0s; }
 
-.toplevel_page_iosSlider .actions span {
+.toplevel_page_bvs .actions span {
   text-indent: 20px;
   display: block;
   outline: 0;
@@ -72,10 +72,10 @@
   -o-box-shadow: 0 13px 28px -27px #606060;
   box-shadow: 0 13px 28px -27px #606060; }
 
-.toplevel_page_iosSlider .actions span:hover {
+.toplevel_page_bvs .actions span:hover {
   color: #30ffff; }
 
-.toplevel_page_iosSlider .message a {
+.toplevel_page_bvs .message a {
   display: inline-block;
   width: 20%;
   text-align: center;
@@ -83,7 +83,7 @@
   box-sizing: border-box;
   vertical-align: top; }
 
-.toplevel_page_iosSlider .message img {
+.toplevel_page_bvs .message img {
   clear: both;
   display: block;
   height: auto;
@@ -91,10 +91,10 @@
   max-width: 100%;
   text-align: center; }
 
-.toplevel_page_iosSlider .visible.message img {
+.toplevel_page_bvs .visible.message img {
   opacity: 0; }
 
-.toplevel_page_iosSlider .quad .message a {
+.toplevel_page_bvs .quad .message a {
   width: 25%; }
 
 .actions i {
@@ -109,18 +109,18 @@
   -o-transition: all 400ms ease-in-out 100ms;
   transition: all 400ms ease-in-out 100ms; }
 
-.toplevel_page_iosSlider.selected i {
+.toplevel_page_bvs.selected i {
   transform: rotate(90deg);
   top: 10px; }
 
 /*page specific*/
-.toplevel_page_iosSlider #wpbody {
+.toplevel_page_bvs #wpbody {
   -webkit-box-shadow: 30px 0 70px -60px white inset;
   -moz-box-shadow: 30px 0 70px -60px white inset;
   -o-box-shadow: 30px 0 70px -60px white inset;
   box-shadow: 30px 0 70px -60px white inset; }
 
-.toplevel_page_iosSlider .wrap #message {
+.toplevel_page_bvs .wrap #message {
   display: none; }
 
 /*# sourceMappingURL=style.css.map */
